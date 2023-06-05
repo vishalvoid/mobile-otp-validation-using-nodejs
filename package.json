@@ -1,0 +1,25 @@
+{
+  "name": "vyapar",
+  "version": "1.0.0",
+  "description": "authentication for vyapar",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Vishal Kumar singh",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^16.1.4",
+    "express": "^4.18.2",
+    "mongoose": "^6.7.4",
+    "unirest": "^0.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "engines": {
+    "node": "v18.12.1"
+  }
+}
