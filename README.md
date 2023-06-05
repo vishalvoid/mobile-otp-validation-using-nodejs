@@ -1,6 +1,6 @@
-# Send and verify sms using Expressjs and Mongodb
+# Send and verify sms using Node.js Express.js Mongo & Fast2SMS
 
-create `.env` in your project root
+create `config/config.env` in your project root
 
 ```
 
@@ -13,7 +13,7 @@ MONGO_URI=
 
 ## Api endpoint
 
-/api/auth/signup
+/api/v1/signup
 
 ```
     {
@@ -21,7 +21,7 @@ MONGO_URI=
     }
 ```
 
-/api/auth/verify_otp
+/api/v1/verify_otp
 
 ```
     {
