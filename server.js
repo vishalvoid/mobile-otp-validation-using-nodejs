@@ -3,19 +3,21 @@ const mongoose = require("mongoose");
 const express = require("express");
 const authRoutes = require("./routes/auth");
 dotenv.config({ path: "./config/config.env" });
-
 const {
   notFoundErrorHandler,
   globalErrorHandler,
 } = require("./middlewares/error");
 
+// initializing express app
 const app = express();
 
 const PORT = process.env.PORT;
 const mongoDB = process.env.MONGO_URI;
+
 // parse incomming request into json
 app.use(express.json());
 
+// connecting to database
 const connectDatabase = async () => {
   mongoose.set("strictQuery", true);
   await mongoose
@@ -28,7 +30,7 @@ const connectDatabase = async () => {
     });
 };
 
-// server health check
+// checking if the server is working fine
 app.get("/", (req, res) => {
   res.status(200).json({
     type: "success",
@@ -38,9 +40,9 @@ app.get("/", (req, res) => {
 });
 
 // register auth routes
-app.use("/api/auth", authRoutes);
+app.use("/api/v1", authRoutes);
 
-// api route not found error handling
+// 404 error handle
 app.use("*", notFoundErrorHandler);
 
 //global error handler
@@ -49,7 +51,6 @@ app.use(globalErrorHandler);
 async function main() {
   try {
     await connectDatabase();
-    // start express server
     app.listen(PORT, () => console.log(`listening on port ${PORT}`));
   } catch (error) {
     console.log(error);

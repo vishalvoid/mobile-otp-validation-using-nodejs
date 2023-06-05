@@ -4,10 +4,10 @@ const { sendSMS } = require("../utils/sms");
 
 const signup = async (req, res, next) => {
   try {
-    // extract phone number from request body
+    // destructuring
     const { phone } = req.body;
 
-    // check duplicate phone number
+    // duplicate user
     const user = await User.findOne({
       phone,
     });
@@ -21,16 +21,14 @@ const signup = async (req, res, next) => {
       phone,
     });
 
-    // generate 6 digit  otp
+    // calling generate otp function which will generate otp.
     const otp = generateOTP(6);
 
-    // save otp in db
-
+    // storing otp in database.
     newUser.otp = otp;
     await newUser.save();
 
-    // send otp
-
+    // otp send method
     await sendSMS(phone, otp);
 
     return res.status(201).json({
@@ -44,16 +42,16 @@ const signup = async (req, res, next) => {
 
 const verifyOTP = async (req, res, next) => {
   try {
-    // extract otp and phone number from request body
+    // destructuring to get phone and op from body;
     const { phone, otp } = req.body;
 
-    // verify phone number exists or not
+    // checking if phone number exists or not
     const user = await User.findOne({
       phone,
     });
 
     if (!user) {
-      return next({ status: 400, message: "Phone number is incorrect" });
+      return next({ status: 400, message: "Incorrect Phone Number" });
     }
 
     // verify otp

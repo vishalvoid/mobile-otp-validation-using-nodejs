@@ -11,7 +11,7 @@ MONGO_URI=
 ```
 
 
-## Api endpoint
+## Api Documentation
 
 /api/v1/signup
 
@@ -21,7 +21,7 @@ MONGO_URI=
     }
 ```
 
-/api/v1/verify_otp
+/api/v1/verifyOtp
 
 ```
     {

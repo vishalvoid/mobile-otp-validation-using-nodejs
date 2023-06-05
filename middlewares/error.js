@@ -13,7 +13,7 @@ exports.globalErrorHandler = (err, req, res, next) => {
 exports.notFoundErrorHandler = (req, res, next) => {
   const error = {
     status: 404,
-    message: "API endpoint does not exists",
+    message: "Invalid Api path.",
   };
   next(error);
 };
